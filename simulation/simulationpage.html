@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation</title>
+    <link rel="stylesheet" href="/simulation/simulationpage.css">
+
+    <script src="https://kit.fontawesome.com/9cb15b3f7c.js" crossorigin="anonymous"></script>
+    <style>
+        /* Add your custom styles here */
+
+        body {
+            margin: 0;
+            font-family: 'Helvetica', 'Arial', sans-serif; /* Use a font similar to Apple's style */
+            background-color: transparent; /* Set the background color to transparent */
+        }
+
+        .content {
+            position: relative;
+            padding: 50px; /* Adjust padding as needed */
+            min-height: 100vh;
+            background-color: transparent; /* Set the background color to transparent */
+        }
+
+        .description {
+            flex: 1;
+            background-color: transparent; /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(242, 241, 241, 0.1); /* Subtle box shadow */
+        }
+
+        .description h2, .description p, .description ul {
+            color: #fffdfd; /* Adjust the text color as needed */
+            font-weight: normal; /* Use a normal font weight */
+        }
+
+        .image-container {
+            margin-top: 20px; /* Adjust the top margin as needed */
+            text-align: center; /* Align the image to the right */
+        }
+
+        .image-container img {
+            max-width: 1400px; /* Set the maximum width of the image */
+            width: 100%; /* Ensure the image is responsive within its container */
+            border: 2px solid #faf6f6; /* Add a 2px solid border with color #333 (adjust color as needed) */
+            border-radius: 8px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo"><i class="fa-solid fa-shuttle-space fa-sm"></i>AstroLab</a>
+            <div class="navbar__toggle" id="mobile-menu">
+               <span class="bar"></span> 
+               <span class="bar"></span> 
+               <span class="bar"></span> 
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/index.html" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/simulation/simulationpage.html" class="navbar__links">Simulations</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="/feedback/feedback.html" class="button">Feedback</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="simulations__container">
+        <a href="/celestsim/celestsim.html">
+            <button class="simulation__button" id="simulationButton">Orbital Simulator</button>
+        </a>
+    </div>
+
+    <section class="content" id="section1">
+        <div class="simulation-container">
+            <div class="description">
+                <h2>Celestial Mechanics - Interactive Orbital Simulator</h2>
+                <br>
+                <p>Simulate Orbits with planets throughout our solar system with the Celestial Mechanics simulator! Embark on your physics journey with:</p>
+                <br>
+                <ul>
+                    <li>Realistic Orbital Dynamics: Explore the intricacies of celestial mechanics with accurate orbital simulations. Each planet reacts dynamically to gravitational forces, resulting in realistic and visually stunning orbits.</li>
+                    <li>User-Defined Initial Velocities: Take control of the cosmos by setting the initial velocities of planets. Use an intuitive GUI to adjust the magnitude and direction of the velocities, allowing for endless possibilities in crafting unique planetary trajectories.</li>
+                    <li> Responsive User Interface: Seamlessly navigate through the cosmos with an intuitive user interface powered by dat.gui. Use interactive controls to add planets, adjust masses, and visualize the gravitational dance unfolding in real-time.</li>
+                    <li> Right click on the simulation and click "Inspect" to track velocities and observe gravitational forces in real time!</li>
+                </ul>
+                <br>
+                <br>
+
+            </div>
+            <div class="image-container">
+                <img src="tutorial2.jpg" alt="Description of the image">
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
