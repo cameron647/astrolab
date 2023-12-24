@@ -1,5 +1,5 @@
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import * as THREE from 'three'; // Import THREE library
+//import { GLTFLoader } from '../';
+//import * as THREE from 'three'; // Import THREE library
 
 // ---------------------------ADD PLANET FUNCTIONS-------------------------------------
 export function addPlanet(modelUrl, scene, camera, renderer, planetsArray, addMarsEnabled, planetSettings, scale, planetProperties, cameraDirection) {
