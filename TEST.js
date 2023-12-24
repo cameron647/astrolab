@@ -1,5 +1,5 @@
 // ---------------------- IMPORTS ----------------------
-import * as THREE from 'three';
+import * as THREE from './node_modules/three/build/three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { addPlanet } from './celestsim/actions/eventlistener'; // Import the function from the separate file
 import { GUI } from 'dat.gui';
