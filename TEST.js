@@ -1,8 +1,8 @@
 // ---------------------- IMPORTS ----------------------
-import * as THREE from './three.js-master/three.js-master/build/three.js';
+import * as THREE from 'three';
 import { OrbitControls } from './three.js-master/three.js-master/examples/jsm/controls/OrbitControls.js';
 import { addPlanet } from './celestsim/actions/eventlistener'; // Import the function from the separate file
-import { GUI } from './node_modules/dat.gui/build/dat.gui.js';
+import { GUI } from 'dat.gui';
 import { calculateForces } from './staticgravity'; import { updateVelocities } from './staticgravity'; import { updatePositions } from './staticgravity';
 import { rungeKuttaIntegration } from './celestsim/RK4';
 import { GLTFLoader } from './three.js-master/three.js-master/examples/jsm/loaders/GLTFLoader.js'
