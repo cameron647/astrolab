@@ -1,5 +1,5 @@
-//import { GLTFLoader } from '';
-//import * as THREE from 'three'; // Import THREE library
+import { GLTFLoader } from '../actions/GLTFLoader.js';
+import * as THREE from '../actions/three.js';
 
 // ---------------------------ADD PLANET FUNCTIONS-------------------------------------
 export function addPlanet(modelUrl, scene, camera, renderer, planetsArray, addMarsEnabled, planetSettings, scale, planetProperties, cameraDirection) {

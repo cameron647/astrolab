@@ -1,11 +1,11 @@
 // ---------------------- IMPORTS ----------------------
-import * as THREE from './node_modules/three/build/three';
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls';
+import * as THREE from './three.js-master/three.js-master/build/three.js';
+import { OrbitControls } from './three.js-master/three.js-master/examples/jsm/controls/OrbitControls.js';
 import { addPlanet } from './celestsim/actions/eventlistener'; // Import the function from the separate file
-import { GUI } from './node_modules/dat.gui/build/dat.gui';
+import { GUI } from './node_modules/dat.gui/build/dat.gui.js';
 import { calculateForces } from './staticgravity'; import { updateVelocities } from './staticgravity'; import { updatePositions } from './staticgravity';
 import { rungeKuttaIntegration } from './celestsim/RK4';
-import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader'
+import { GLTFLoader } from './three.js-master/three.js-master/examples/jsm/loaders/GLTFLoader.js'
 
 //  ---------------------- Create the scene, camera, and renderer  ----------------------
 const scene = new THREE.Scene();
