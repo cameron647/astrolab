@@ -1,4 +1,4 @@
-import { GLTFLoader } from '../actions/GLTFLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
 
 // ---------------------------ADD PLANET FUNCTIONS-------------------------------------
