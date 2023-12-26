@@ -2,7 +2,7 @@
 import * as THREE from './celestsim/actions/three';
 import { OrbitControls } from './celestsim/actions/OrbitControls';
 import { addPlanet } from './celestsim/actions/eventlistener'; // Import the function from the separate file
-import { GUI } from 'dat.gui';
+import { GUI } from './node_modules/dat.gui/build/dat.gui';
 import { calculateForces } from './staticgravity'; import { updateVelocities } from './staticgravity'; import { updatePositions } from './staticgravity';
 import { rungeKuttaIntegration } from './celestsim/RK4';
 import { GLTFLoader } from './celestsim/actions/GLTFLoader'
