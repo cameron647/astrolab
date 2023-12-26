@@ -1,4 +1,4 @@
-//import { GLTFLoader } from '../';
+//import { GLTFLoader } from '';
 //import * as THREE from 'three'; // Import THREE library
 
 // ---------------------------ADD PLANET FUNCTIONS-------------------------------------
