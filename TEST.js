@@ -1,5 +1,5 @@
 // ---------------------- IMPORTS ----------------------
-//import * as THREE from 'three';
+//import * as THREE from './';
 //import { OrbitControls } from 'OrbitControls';
 import { addPlanet } from './celestsim/actions/eventlistener'; // Import the function from the separate file
 import { calculateForces } from './staticgravity'; import { updateVelocities } from './staticgravity'; import { updatePositions } from './staticgravity';
