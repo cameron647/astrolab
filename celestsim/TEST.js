@@ -1,10 +1,10 @@
 // ---------------------- IMPORTS ----------------------
-const THREE = require('three');
-const OrbitControls = require('OrbitControls');
-const { addPlanet } = require('./actions/eventlistener'); // Import the function from the separate file
-const { calculateForces, updateVelocities, updatePositions } = require('../staticgravity');
-const { rungeKuttaIntegration } = require('./RK4');
-const { GLTFLoader } = require('GLTFLoader');
+import * as THREE from 'three';
+import { OrbitControls } from 'OrbitControls';
+import { addPlanet } from './actions/eventlistener'; // Import the function from the separate file
+import { calculateForces, updateVelocities, updatePositions } from '../staticgravity';
+import { rungeKuttaIntegration } from './RK4';
+import GLTFLoader from 'GLTFLoader';
 //  ---------------------- Create the scene, camera, and renderer  ----------------------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);

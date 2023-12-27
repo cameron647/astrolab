@@ -1,5 +1,5 @@
-const THREE = require('three');
-const { GLTFLoader } = require('GLTFLoader');
+import * as THREE from 'three';;
+import GLTFLoader from 'GLTFLoader';
 
 // ---------------------------ADD PLANET FUNCTIONS-------------------------------------
 export function addPlanet(modelUrl, scene, camera, renderer, planetsArray, addMarsEnabled, planetSettings, scale, planetProperties, cameraDirection) {
