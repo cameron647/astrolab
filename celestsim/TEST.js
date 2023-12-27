@@ -293,7 +293,7 @@ addMercuryButton.addEventListener('click', () => {
   if (addMercuryEnabled === true) {
     const cameraDirection = new THREE.Vector3(0, 0, -1)
     console.log('CAMERA DIRECTION:', cameraDirection)
-    addPlanet('/3Dmodels/mercury.glb', scene, camera, renderer, mercurySpheres, addMercuryEnabled, _mercurySettings, 0.001, planetProperties, cameraDirection)
+    addPlanet('./3Dmodels/mercury.glb', scene, camera, renderer, mercurySpheres, addMercuryEnabled, _mercurySettings, 0.001, planetProperties, cameraDirection)
   }
 });
 
@@ -305,7 +305,7 @@ addVenusButton.addEventListener('click', () => {
   if (addVenusEnabled === true) {
     const cameraDirection = new THREE.Vector3(0, 0, -1)
     console.log('CAMERA DIRECTION:', cameraDirection)
-    addPlanet('/3Dmodels/venus.glb', scene, camera, renderer, venusSpheres, addVenusEnabled, _venusSettings, 1.7, planetProperties, cameraDirection)
+    addPlanet('./3Dmodels/venus.glb', scene, camera, renderer, venusSpheres, addVenusEnabled, _venusSettings, 1.7, planetProperties, cameraDirection)
   }
 });
 // Mars
@@ -318,7 +318,7 @@ addMarsButton.addEventListener('click', () => {
     const cameraDirection = new THREE.Vector3(0, 0, -1)
     console.log('CAMERA DIRECTION:', cameraDirection)
     console.log('Adding Mars planet using addPlanet function');
-    addPlanet('/3Dmodels/mars.glb', scene, camera, renderer, marsSpheres, addMarsEnabled, _marsSettings, 0.8, planetProperties, cameraDirection)
+    addPlanet('./3Dmodels/mars.glb', scene, camera, renderer, marsSpheres, addMarsEnabled, _marsSettings, 0.8, planetProperties, cameraDirection)
   }
 });
 
@@ -332,7 +332,7 @@ addJupiterButton.addEventListener('click', () => {
     const cameraDirection = new THREE.Vector3(0, 0, -1)
     console.log('CAMERA DIRECTION:', cameraDirection)
     console.log('Adding Jupiter planet using addPlanet function');
-    addPlanet('/3Dmodels/jupiter.glb', scene, camera, renderer, jupiterSpheres, addJupiterEnabled, _jupiterSettings, 35, planetProperties, cameraDirection)
+    addPlanet('./3Dmodels/jupiter.glb', scene, camera, renderer, jupiterSpheres, addJupiterEnabled, _jupiterSettings, 35, planetProperties, cameraDirection)
   }
 });
 
@@ -346,7 +346,7 @@ addSaturnButton.addEventListener('click', () => {
     const cameraDirection = new THREE.Vector3(0, 0, -1)
     console.log('CAMERA DIRECTION:', cameraDirection)
     console.log('Adding Jupiter planet using addPlanet function');
-    addPlanet('/3Dmodels/saturn.glb', scene, camera, renderer, saturnSpheres, addSaturnEnabled, _saturnSettings, 0.18, planetProperties, cameraDirection)
+    addPlanet('./3Dmodels/saturn.glb', scene, camera, renderer, saturnSpheres, addSaturnEnabled, _saturnSettings, 0.18, planetProperties, cameraDirection)
   }
 });
 
@@ -360,7 +360,7 @@ addUranusButton.addEventListener('click', () => {
     const cameraDirection = new THREE.Vector3(0, 0, -1)
     console.log('CAMERA DIRECTION:', cameraDirection)
     console.log('Adding Uranus planet using addPlanet function');
-    addPlanet('/3Dmodels/uranus.glb', scene, camera, renderer, uranusSpheres, addUranusEnabled, _uranusSettings, 7, planetProperties, cameraDirection)
+    addPlanet('./3Dmodels/uranus.glb', scene, camera, renderer, uranusSpheres, addUranusEnabled, _uranusSettings, 7, planetProperties, cameraDirection)
   }
 });
 
@@ -374,7 +374,7 @@ addNeptuneButton.addEventListener('click', () => {
     const cameraDirection = new THREE.Vector3(0, 0, -1)
     console.log('CAMERA DIRECTION:', cameraDirection)
     console.log('Adding Uranus planet using addPlanet function');
-    addPlanet('/3Dmodels/neptune.glb', scene, camera, renderer, neptuneSpheres, addNeptuneEnabled, _neptuneSettings, 9, planetProperties, cameraDirection)
+    addPlanet('./3Dmodels/neptune.glb', scene, camera, renderer, neptuneSpheres, addNeptuneEnabled, _neptuneSettings, 9, planetProperties, cameraDirection)
   }
 });
 
@@ -421,18 +421,18 @@ renderer.domElement.addEventListener('click', (event) => {
       //sphere.initialVelocity = _earthSettings.initialVelocityMagnitude
 
       const textureLoader = new THREE.TextureLoader();
-      textureLoader.load('earthmap1k.jpg', (texture) => {
+      textureLoader.load('./earthmap1k.jpg', (texture) => {
         material.map = texture;
         material.needsUpdate = true; // Update material to apply the texture
       });
 
-      const bumpMapUrl = 'earthbump1k.jpg';
+      const bumpMapUrl = './earthbump1k.jpg';
       textureLoader.load(bumpMapUrl, (bumpMapTexture) => {
         material.bumpMap = bumpMapTexture;
         material.needsUpdate = true; // Update material to apply the bump map
       });
 
-      const specularMapUrl = 'earthspec1k.jpg';
+      const specularMapUrl = './earthspec1k.jpg';
       textureLoader.load(specularMapUrl, (specularMapTexture) => {
         material.specularMap = specularMapTexture;
         material.needsUpdate = true; // Update material to apply the specular map
