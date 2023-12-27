@@ -211,22 +211,16 @@ function calculateForces(planetProperties, G, additionalForce = new THREE.Vector
               const distanceSq = r.lengthSq();
 
               if (distanceSq > 0) { // Avoid division by zero
-                  let forceMagnitude;
+                  const forceMagnitude = (-G * planet1.mass * planet2.mass) / distanceSq;
 
-                  if (planet1.velocity.lengthSq() === 0 && planet2.velocity.lengthSq() === 0) {
-                      forceMagnitude = (-G * planet1.mass * planet2.mass) / distanceSq;
-                  } else if (planet1.velocity.lengthSq() === 0 && planet2.velocity.lengthSq() !== 0) {
-                      // Check if planet1 is static and planet2 is not at the origin
-                      forceMagnitude = (-G * planet1.mass * planet2.mass) / distanceSq;
-                  } else {
-                      forceMagnitude = (-G * planet1.mass * planet2.mass) / distanceSq;
-                  }
-
+                  // Calculate the force vector
                   const force = r.normalize().multiplyScalar(forceMagnitude);
 
+                  // Update forces on both planets
                   planet1.force.add(force);
                   planet2.force.sub(force);
 
+                  // Update total force
                   totalForce.add(force);
               }
           }
