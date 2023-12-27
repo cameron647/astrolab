@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroLab</title>
+    <link rel="stylesheet" href="./feedback.css">
+
+    <script src="https://kit.fontawesome.com/9cb15b3f7c.js" crossorigin="anonymous"></script>
+
+    <title>Contact Us</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: #000;
+      color: #fff;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo"><i class="fa-solid fa-shuttle-space fa-sm"></i>   AstroLab</a>
+            <div class="navbar__toggle" id="mobile-menu">
+               <span class="bar"></span> 
+               <span class="bar"></span> 
+               <span class="bar"></span> 
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/index.html" class="navbar__links"> Home </a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/simulation/simulationpage.html" class="navbar__links"> Simulations </a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="/feedback/feedback.html" class="button"> Feedback </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <form
+  action="https://formspree.io/f/xbjnrpwn"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
+
+    <script src="feedback.js"></script>
+
+</body>
+</html>
