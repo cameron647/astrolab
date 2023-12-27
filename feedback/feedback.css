@@ -6,14 +6,14 @@
 }
 
 body {
-    background-image: url(/images/aesthetic-black-background-1920-x-1080-0kfw21pdqoj5trap.jpg);
+    background-image: url(../images/astrobackground.jpg);
     background-color: black;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .navbar {
-    background-image: url(/images/aesthetic-black-background-1920-x-1080-0kfw21pdqoj5trap.jpg);
+    background-image: url(../images/astrobackground.jpg);
     height: 80px;
     display: flex;
     justify-content: center;
