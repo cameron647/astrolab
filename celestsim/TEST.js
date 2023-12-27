@@ -1,9 +1,9 @@
 // ---------------------- IMPORTS ----------------------
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
-import { addPlanet } from './actions/eventlistener'; // Import the function from the separate file
-import { calculateForces, updateVelocities, updatePositions } from '../staticgravity';
-import { rungeKuttaIntegration } from './RK4';
+import { addPlanet } from '/Users/camer/OneDrive/AstroLab/celestsim/actions/eventlistener'; // Import the function from the separate file
+import { calculateForces, updateVelocities, updatePositions } from '/Users/camer/OneDrive/AstroLab/staticgravity';
+import { rungeKuttaIntegration } from '/Users/camer/OneDrive/AstroLab/celestsim/RK4';
 import GLTFLoader from 'GLTFLoader';
 //  ---------------------- Create the scene, camera, and renderer  ----------------------
 const scene = new THREE.Scene();
