@@ -1,10 +1,8 @@
 // ---------------------- IMPORTS ----------------------
 import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
-import { addPlanet } from './eventlistener'; // Import the function from the separate file
-import { calculateForces, updateVelocities, updatePositions } from '../staticgravity';
-import { rungeKuttaIntegration } from './RK4';
-import GLTFLoader from 'GLTFLoader';
+import { GLTFLoader } from 'GLTFLoader';
+import { GUI } from 'dat.gui';
 //  ---------------------- Create the scene, camera, and renderer  ----------------------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -116,7 +114,161 @@ const _neptuneSettings = {
   mass: 102000000000,
   initialVelocityMagnitude: 0,
 };
+// ----------------------- FUNCTIONS -------------------------
 
+// ---------------------------ADD PLANET FUNCTIONS-------------------------------------
+function addPlanet(modelUrl, scene, camera, renderer, planetsArray, addMarsEnabled, planetSettings, scale, planetProperties, cameraDirection) {
+  // Remove the previous planet's event listener (if any)
+  if (planetsArray.length > 0) {
+      renderer.domElement.removeEventListener('click', planetsArray[0].listener);
+  }
+
+  // Add the new planet's event listener
+  const planetListener = (event) => {
+      console.log('Click event triggered');
+      // Calculate the click position in normalized device coordinates (NDC)
+      const mouse = new THREE.Vector2();
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      // Create a raycaster to check for intersections with the scene
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouse, camera);
+
+      // Check for intersections with the scene objects
+      const intersects = raycaster.intersectObjects(scene.children);
+
+      // If there's no intersection, add a new planet at the clicked position
+      if (intersects.length === 0) {
+          console.log('No intersection detected');
+          // Load the 3D model
+          const gltfLoader = new GLTFLoader(); // Use THREE.GLTFLoader here
+
+
+          gltfLoader.load(modelUrl, (gltfScene) => {
+              if (addMarsEnabled) {
+                  console.log('Adding Mars planet'); // Use the new variable instead of addMarsEnabled
+                  const loadedModel = gltfScene.scene;
+
+                  loadedModel.scale.set(scale, scale, scale);
+                  
+                  const initialVelocity = cameraDirection.clone().multiplyScalar(planetSettings.initialVelocityMagnitude);
+                  loadedModel.mass = planetSettings.mass
+                  loadedModel.initialVelocity = planetSettings.initialVelocityMagnitude;
+
+                  console.log('Model assigned:', loadedModel);
+                  // Convert the click position to a 3D vector in the scene coordinates
+                  const position = new THREE.Vector3();
+                  position.set(mouse.x, mouse.y, 0.5).unproject(camera);
+
+                  initialVelocity.applyQuaternion(camera.quaternion); // Apply camera's orientation
+
+                  // Position the model at the clicked position
+                  loadedModel.position.copy(position);
+
+                  // Add the model to the scene
+                  scene.add(loadedModel);
+
+                  planetProperties.push({
+                      type: planetSettings.type,
+                      mass: planetSettings.mass,
+                      model: loadedModel,
+                      force: new THREE.Vector3(), // Initialize force vector
+                      velocity: initialVelocity,
+                  });
+
+                  // Store the planet's model in the array
+                  planetsArray[0].model = loadedModel;
+
+                  addMarsEnabled = false;
+
+              }
+          });
+      }
+  };
+
+  // Attach the event listener to the renderer's DOM element
+  renderer.domElement.addEventListener('click', planetListener);
+
+  // Store the planet's event listener in the planetsArray
+  planetsArray[0] = { listener: planetListener };
+
+  console.log('Planet listener added');
+}
+
+// STATIC GRAVITY INTERACTION
+
+function calculateForces(planetProperties, G, additionalForce = new THREE.Vector3()) {
+  const totalForce = new THREE.Vector3();
+
+  for (let i = 0; i < planetProperties.length; i++) {
+      for (let j = i + 1; j < planetProperties.length; j++) {
+          const planet1 = planetProperties[i];
+          const planet2 = planetProperties[j];
+
+          if (planet1.model && planet2.model) {
+              const r = planet2.model.position.clone().sub(planet1.model.position);
+              const distanceSq = r.lengthSq();
+
+              if (distanceSq > 0) { // Avoid division by zero
+                  let forceMagnitude;
+
+                  if (planet1.velocity.lengthSq() === 0 && planet2.velocity.lengthSq() === 0) {
+                      forceMagnitude = (-G * planet1.mass * planet2.mass) / distanceSq;
+                  } else if (planet1.velocity.lengthSq() === 0 && planet2.velocity.lengthSq() !== 0) {
+                      // Check if planet1 is static and planet2 is not at the origin
+                      forceMagnitude = (-G * planet1.mass * planet2.mass) / distanceSq;
+                  } else {
+                      forceMagnitude = (-G * planet1.mass * planet2.mass) / distanceSq;
+                  }
+
+                  const force = r.normalize().multiplyScalar(forceMagnitude);
+
+                  planet1.force.add(force);
+                  planet2.force.sub(force);
+
+                  totalForce.add(force);
+              }
+          }
+      }
+  }
+
+  return totalForce.add(additionalForce);
+}
+
+function updateVelocities(planetProperties, timeStep) {
+  for (const planet of planetProperties) {
+
+      const acceleration = planet.force.clone().divideScalar(planet.mass);
+      planet.velocity.add(acceleration.clone().multiplyScalar(timeStep));
+      planet.force.set(0, 0, 0); // Reset the force for the next iteration
+
+  }
+}
+
+function updatePositions(planetProperties, timeStep, scene) {
+  for (const planet of planetProperties) {
+      console.log('Updating position for planet:', planet.type);
+      console.log('Old position:', planet.model.position);
+      planet.model.position.add(planet.velocity.clone().multiplyScalar(timeStep));
+      console.log('New position:', planet.model.position);
+
+      scene.add(planet.model);
+  }
+}
+
+function rungeKuttaIntegration(planetProperties, G, timeStep) {
+  for (const planet of planetProperties) {
+      const k1 = calculateForces(planetProperties, G).clone().divideScalar(planet.mass);
+      const k2 = calculateForces(planetProperties, G, k1.clone().multiplyScalar(timeStep / 2)).clone().divideScalar(planet.mass);
+      const k3 = calculateForces(planetProperties, G, k2.clone().multiplyScalar(timeStep / 2)).clone().divideScalar(planet.mass);
+      const k4 = calculateForces(planetProperties, G, k3.clone().multiplyScalar(timeStep)).clone().divideScalar(planet.mass);
+
+      const acceleration = k1.clone().add(k2.clone().multiplyScalar(2)).add(k3.clone().multiplyScalar(2)).add(k4).multiplyScalar(1 / 6);
+
+      planet.velocity.add(acceleration.clone().multiplyScalar(timeStep));
+      planet.force.set(0, 0, 0); // Reset the force for the next iteration
+  }}
 //  ---------------------- JS FOR MENU  ----------------------
 
 const menuTrigger = document.getElementById('menu-trigger');
@@ -339,7 +491,7 @@ function updateMass(planetArray, value) {
     }
   }
 
-const gui = new dat.GUI()
+const gui = new GUI()
 gui.domElement.id = 'gui';
 // DAT GUI FOR MERCURY ----------------------
 const mercuryFolder = gui.addFolder('Mercury')
