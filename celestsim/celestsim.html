@@ -7,17 +7,6 @@
     <link rel="stylesheet" href="./celestsim.css">
 
     <script src="https://kit.fontawesome.com/9cb15b3f7c.js" crossorigin="anonymous"></script>
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.138.0/build/three.module.js",
-                "OrbitControls": "https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js",
-                "GLTFLoader": "https://unpkg.com/three@0.138.0/examples/jsm/loaders/GLTFLoader.js",
-                "dat.gui": "https://cdn.jsdelivr.net/npm/dat.gui@0.7.9/build/dat.gui.module.js"
-            }
-        }
-    </script>
-    <script type="text/javascript" src="../dat.gui.min.js"></script>
     
     <style>
     body {
@@ -66,8 +55,13 @@
             <button id="add-neptune-button">Add Neptune</button>
             <!-- add more menu items here if needed -->
         </div>
-
+    
+    <script src="/three.min.js"></script>
+    <script src="/OrbitControls.js"></script>
+    <script src="/celestsim/actions/GLTFLoader.js"></script>
+    <script type="text/javascript" src="dat.gui.min.js"></script>
     <script type="module" src="../TEST.js"></script>
+
 
 </body>
 </html>
