@@ -1,10 +1,10 @@
 // ---------------------- IMPORTS ----------------------
-//import * as THREE from 'three';
-//import { OrbitControls } from 'OrbitControls';
+import * as THREE from 'three';
+import { OrbitControls } from 'OrbitControls';
 import { addPlanet } from './celestsim/actions/eventlistener'; // Import the function from the separate file
 import { calculateForces } from './staticgravity'; import { updateVelocities } from './staticgravity'; import { updatePositions } from './staticgravity';
 import { rungeKuttaIntegration } from './celestsim/RK4';
-//import { GLTFLoader } from 'GLTFLoader';
+import { GLTFLoader } from 'GLTFLoader';
 //  ---------------------- Create the scene, camera, and renderer  ----------------------
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -339,7 +339,7 @@ function updateMass(planetArray, value) {
     }
   }
 
-const gui = new dat.GUI()
+const gui = new GUI()
 gui.domElement.id = 'gui';
 // DAT GUI FOR MERCURY ----------------------
 const mercuryFolder = gui.addFolder('Mercury')
